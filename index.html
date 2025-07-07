@@ -60,6 +60,7 @@
             display: flex;
             min-height: calc(100vh - 16px);
             transition: background-color 0.3s ease, border-color 0.3s ease;
+            flex-direction: column;
         }
         
         /* 왼쪽 제어 패널 */
@@ -599,6 +600,10 @@
                 font-size: 8pt;
             }
             
+            .main-window {
+                min-height: calc(100vh - 40px);
+            }
+            
             .title-bar {
                 padding: 6px;
                 font-size: 9pt;
@@ -861,6 +866,190 @@
             .mobile-menu-panel.active .mobile-menu-item:nth-child(6) { transition-delay: 0.35s; }
             .mobile-menu-panel.active .mobile-menu-item:nth-child(7) { transition-delay: 0.4s; }
         }
+        
+        /* 푸터 스타일 */
+        .footer {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+            border-top: 2px solid var(--border-color);
+            padding: 20px 0;
+            margin-top: auto;
+            font-size: 11pt;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .footer-section h3 {
+            color: var(--text-primary);
+            font-size: 13pt;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 6px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .footer-section p {
+            margin: 0;
+            line-height: 1.5;
+            font-size: 10pt;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .footer-links li {
+            margin: 0;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 10pt;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+        
+        .footer-links a::before {
+            content: '▶';
+            font-size: 8pt;
+            opacity: 0.7;
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10pt;
+        }
+        
+        .contact-item i {
+            width: 16px;
+            text-align: center;
+            opacity: 0.8;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            margin-top: 20px;
+            padding-top: 15px;
+            text-align: center;
+            font-size: 9pt;
+            color: var(--text-secondary);
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .footer-bottom a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--text-primary);
+        }
+        
+        .version-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 4px 12px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 8pt;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .version-info:hover {
+            background: var(--button-hover);
+            transform: translateY(-1px);
+        }
+        
+        /* 모바일 푸터 최적화 */
+        @media screen and (max-width: 767px) {
+            .footer {
+                padding: 15px 0;
+                font-size: 10pt;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 15px;
+            }
+            
+            .footer-section h3 {
+                font-size: 12pt;
+            }
+            
+            .footer-section p {
+                font-size: 9pt;
+            }
+            
+            .footer-links a {
+                font-size: 9pt;
+                padding: 4px 0;
+            }
+            
+            .contact-item {
+                font-size: 9pt;
+            }
+            
+            .footer-bottom {
+                font-size: 8pt;
+                padding: 10px 15px;
+            }
+            
+            .version-info {
+                font-size: 7pt;
+                padding: 3px 8px;
+            }
+        }
+        
+        /* 태블릿 푸터 최적화 */
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -877,8 +1066,10 @@
     <div class="mobile-menu-overlay" onclick="closeMobileMenu()" ontouchend="closeMobileMenu()"></div>
     
     <div class="main-window">
-        <!-- 왼쪽 제어 패널 (Tkinter GUI와 동일한 레이아웃) -->
-        <div class="control-frame mobile-menu-panel">
+        <!-- 메인 콘텐츠 영역 -->
+        <div style="display: flex; flex: 1; min-height: 0;">
+            <!-- 왼쪽 제어 패널 (Tkinter GUI와 동일한 레이아웃) -->
+            <div class="control-frame mobile-menu-panel">
             <!-- 향상된 메뉴 헤더 -->
             <div class="mobile-menu-header">
                 <h2 class="mobile-menu-title">⚙️ 제어판</h2>
@@ -1006,7 +1197,85 @@
                 </div>
             </div>
         </div>
+        </div>
     </div>
+    
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- 프로젝트 정보 -->
+            <div class="footer-section">
+                <h3>🌊 Ekman Transport Visualizer</h3>
+                <p>해양학적 현상을 시각화하는 전문 도구입니다. 에크만 수송 이론을 기반으로 바람과 해류의 상호작용을 분석합니다.</p>
+                <div class="version-info">
+                    <span>📦 v4.8.1</span>
+                    <span>|</span>
+                    <span>🔧 Python + JavaScript</span>
+                    <span>|</span>
+                    <span>📊 Plotly.js</span>
+                </div>
+            </div>
+            
+            <!-- 주요 기능 -->
+            <div class="footer-section">
+                <h3>⚡ 주요 기능</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="setPreset('normal'); return false;">일반 바람 조건 시뮬레이션</a></li>
+                    <li><a href="#" onclick="setPreset('strong'); return false;">강풍 조건 분석</a></li>
+                    <li><a href="#" onclick="setPreset('typhoon'); return false;">태풍 조건 모델링</a></li>
+                    <li><a href="#" onclick="document.getElementById('vis_3d').click(); return false;">3D 시각화</a></li>
+                    <li><a href="#" onclick="document.getElementById('vis_2d').click(); return false;">2D 분석 차트</a></li>
+                    <li><a href="#" onclick="exportResults(); return false;">결과 내보내기</a></li>
+                </ul>
+            </div>
+            
+            <!-- 기술 정보 -->
+            <div class="footer-section">
+                <h3>🔬 기술 정보</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="alert('에크만 수송: 바람 응력에 의해 발생하는 해류의 수직 구조'); return false;">에크만 수송 이론</a></li>
+                    <li><a href="#" onclick="alert('코리올리 효과: 지구 자전으로 인한 편향력'); return false;">코리올리 효과</a></li>
+                    <li><a href="#" onclick="alert('에크만 나선: 깊이에 따른 해류 방향 변화'); return false;">에크만 나선</a></li>
+                    <li><a href="#" onclick="alert('바람 응력: 바람이 해수면에 미치는 힘'); return false;">바람 응력 계산</a></li>
+                    <li><a href="#" onclick="alert('수직 난류: 깊이에 따른 물의 혼합'); return false;">수직 난류 모델링</a></li>
+                </ul>
+            </div>
+            
+            <!-- 연락처 및 지원 -->
+            <div class="footer-section">
+                <h3>📞 연락처 및 지원</h3>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i>📧</i>
+                        <span>support@ekman-visualizer.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>🌐</i>
+                        <span>https://ekman-visualizer.github.io</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>📚</i>
+                        <span>해양학 연구 커뮤니티</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>🔧</i>
+                        <span>기술 지원: 24/7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 푸터 하단 -->
+        <div class="footer-bottom">
+            <div>
+                © 2024 Ekman Transport Visualizer. All rights reserved.
+                <br>
+                <a href="#" onclick="alert('MIT License - 자유로운 사용, 수정, 배포 가능'); return false;">MIT License</a> | 
+                <a href="#" onclick="alert('개인정보는 수집되지 않습니다. 모든 계산은 로컬에서 처리됩니다.'); return false;">Privacy Policy</a> | 
+                <a href="#" onclick="alert('버그 리포트나 기능 제안은 GitHub Issues를 이용해주세요.'); return false;">Report Issues</a>
+            </div>
+        </div>
+    </footer>
 
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -1318,6 +1587,9 @@
             // 제목 바
             document.querySelector('.title-bar').textContent = t('app_title');
             
+            // 푸터 텍스트 업데이트
+            updateFooterTexts();
+            
             // 모바일 메뉴 제목 (간단하게 제어판으로 통일)
             const mobileMenuTitle = currentLanguage === 'ko' ? '⚙️ 제어판' :
                                    currentLanguage === 'zh' ? '⚙️ 控制面板' :
@@ -1403,6 +1675,67 @@
                                                                                                       currentLanguage === 'es' ? '' :
                                                                                                       currentLanguage === 'ru' ? '' :
                                                                                                       ''}`);
+        }
+        
+        // 푸터 텍스트 업데이트 함수
+        function updateFooterTexts() {
+            // 푸터가 존재하는지 확인
+            const footer = document.querySelector('.footer');
+            if (!footer) return;
+            
+            // 프로젝트 설명 업데이트
+            const projectDesc = footer.querySelector('.footer-section p');
+            if (projectDesc) {
+                const descriptions = {
+                    'ko': '해양학적 현상을 시각화하는 전문 도구입니다. 에크만 수송 이론을 기반으로 바람과 해류의 상호작용을 분석합니다.',
+                    'en': 'A professional tool for visualizing oceanographic phenomena. Analyzes wind-ocean current interactions based on Ekman transport theory.',
+                    'zh': '海洋现象可视化专业工具。基于埃克曼输运理论分析风与海流的相互作用。',
+                    'ja': '海洋現象を可視化する専門ツールです。エクマン輸送理論に基づいて風と海流の相互作用を分析します。',
+                    'es': 'Herramienta profesional para visualizar fenómenos oceanográficos. Analiza las interacciones viento-corriente oceánica basadas en la teoría del transporte de Ekman.',
+                    'ru': 'Профессиональный инструмент для визуализации океанографических явлений. Анализирует взаимодействие ветра и океанических течений на основе теории переноса Экмана.'
+                };
+                projectDesc.textContent = descriptions[currentLanguage] || descriptions['en'];
+            }
+            
+            // 주요 기능 링크 업데이트
+            const featureLinks = footer.querySelectorAll('.footer-links a');
+            if (featureLinks.length > 0) {
+                const featureTexts = {
+                    'ko': ['일반 바람 조건 시뮬레이션', '강풍 조건 분석', '태풍 조건 모델링', '3D 시각화', '2D 분석 차트', '결과 내보내기'],
+                    'en': ['Normal Wind Condition Simulation', 'Strong Wind Analysis', 'Typhoon Condition Modeling', '3D Visualization', '2D Analysis Charts', 'Export Results'],
+                    'zh': ['正常风况模拟', '强风分析', '台风条件建模', '3D可视化', '2D分析图表', '导出结果'],
+                    'ja': ['通常風条件シミュレーション', '強風分析', '台風条件モデリング', '3D可視化', '2D分析チャート', '結果エクスポート'],
+                    'es': ['Simulación de Condiciones Normales de Viento', 'Análisis de Viento Fuerte', 'Modelado de Condiciones de Tifón', 'Visualización 3D', 'Gráficos de Análisis 2D', 'Exportar Resultados'],
+                    'ru': ['Симуляция нормальных ветровых условий', 'Анализ сильного ветра', 'Моделирование условий тайфуна', '3D визуализация', '2D аналитические графики', 'Экспорт результатов']
+                };
+                
+                const texts = featureTexts[currentLanguage] || featureTexts['en'];
+                featureLinks.forEach((link, index) => {
+                    if (texts[index]) {
+                        link.textContent = texts[index];
+                    }
+                });
+            }
+            
+            // 기술 정보 링크 업데이트
+            const techLinks = footer.querySelectorAll('.footer-section:nth-child(3) .footer-links a');
+            if (techLinks.length > 0) {
+                const techTexts = {
+                    'ko': ['에크만 수송 이론', '코리올리 효과', '에크만 나선', '바람 응력 계산', '수직 난류 모델링'],
+                    'en': ['Ekman Transport Theory', 'Coriolis Effect', 'Ekman Spiral', 'Wind Stress Calculation', 'Vertical Turbulence Modeling'],
+                    'zh': ['埃克曼输运理论', '科里奥利效应', '埃克曼螺旋', '风应力计算', '垂直湍流建模'],
+                    'ja': ['エクマン輸送理論', 'コリオリ効果', 'エク마ン螺旋', '風応力計算', '鉛直乱流モデリング'],
+                    'es': ['Teoría del Transporte de Ekman', 'Efecto Coriolis', 'Espiral de Ekman', 'Cálculo del Esfuerzo del Viento', 'Modelado de Turbulencia Vertical'],
+                    'ru': ['Теория переноса Экмана', 'Эффект Кориолиса', 'Спираль Экмана', 'Расчет напряжения ветра', 'Моделирование вертикальной турбулентности']
+                };
+                
+                const texts = techTexts[currentLanguage] || techTexts['en'];
+                techLinks.forEach((link, index) => {
+                    if (texts[index]) {
+                        link.textContent = texts[index];
+                    }
+                });
+            }
         }
         
         // 언어 변경 함수
