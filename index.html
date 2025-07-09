@@ -1299,8 +1299,8 @@
     <div class="main-window">
         <!-- 메인 콘텐츠 영역 -->
         <div style="display: flex; flex: 1; min-height: 0;">
-            <!-- 왼쪽 제어 패널 (Tkinter GUI와 동일한 레이아웃) -->
-            <div class="control-frame mobile-menu-panel">
+        <!-- 왼쪽 제어 패널 (Tkinter GUI와 동일한 레이아웃) -->
+        <div class="control-frame mobile-menu-panel">
             <!-- 향상된 메뉴 헤더 -->
             <div class="mobile-menu-header">
                 <h2 class="mobile-menu-title">⚙️ 제어판</h2>
@@ -1426,8 +1426,8 @@
                 <div style="text-align: center; padding: 50px; color: #666;">
                     <p>계산 및 시각화 버튼을 클릭하세요</p>
                 </div>
+                </div>
             </div>
-        </div>
         </div>
     </div>
     
@@ -2299,7 +2299,7 @@
             document.getElementById('wind_direction_value').textContent = parseFloat(document.getElementById('wind_direction').value).toFixed(0);
             // 위도 값을 음수로 표시
             const latitudeValue = parseFloat(document.getElementById('latitude').value);
-            document.getElementById('latitude_value').textContent = (latitudeValue > 0 ? '+' : '') + latitudeValue.toFixed(0);
+            document.getElementById('latitude_value').textContent = (-latitudeValue).toFixed(0);
             document.getElementById('depth_value').textContent = parseFloat(document.getElementById('depth').value).toFixed(0);
         }
         
@@ -3006,22 +3006,12 @@
                 textposition: 'top right',
                 showlegend: true
             });
-            // Windstress 화살표(cone)
-            traces.push({
-                type: 'cone',
-                x: [windX], y: [windY], z: [0],
-                u: [windX], v: [windY], w: [0],
-                sizemode: 'absolute', sizeref: 0.3 * windLen, anchor: 'tip',
-                showscale: false, colorscale: [[0, '#FF7F32'], [1, '#FF7F32']],
-                name: LABELS.windstress[lang],
-                showlegend: false
-            });
             // 3. Ekman Transport (굵은 연두색 화살표, 표면)
             const transportScale = windLen * 0.7;
             const transportMag = Math.sqrt(results.Mx**2 + results.My**2);
             const ekmanX = (results.Mx / (transportMag || 1)) * transportScale;
             const ekmanY = (results.My / (transportMag || 1)) * transportScale;
-            traces.push({
+                traces.push({
                 x: [0, ekmanX], y: [0, ekmanY], z: [0, 0],
                 mode: 'lines+markers+text',
                 type: 'scatter3d',
@@ -3031,16 +3021,6 @@
                 text: ['', LABELS.ekman[lang]],
                 textposition: 'middle right',
                 showlegend: true
-            });
-            // Ekman Transport 화살표(cone)
-            traces.push({
-                type: 'cone',
-                x: [ekmanX], y: [ekmanY], z: [0],
-                u: [ekmanX], v: [ekmanY], w: [0],
-                sizemode: 'absolute', sizeref: 0.3 * transportScale, anchor: 'tip',
-                showscale: false, colorscale: [[0, '#A3D977'], [1, '#A3D977']],
-                name: LABELS.ekman[lang],
-                showlegend: false
             });
             // 4. Geostrophic Transport (굵은 파란색 화살표, 바닥, 예시로 대각선)
             const geoLen = windLen * 0.8;
@@ -3058,23 +3038,13 @@
                 textposition: 'bottom left',
                 showlegend: true
             });
-            // Geostrophic Transport 화살표(cone)
-            traces.push({
-                type: 'cone',
-                x: [geoX], y: [geoY], z: [-depth],
-                u: [geoX], v: [geoY], w: [0],
-                sizemode: 'absolute', sizeref: 0.3 * geoLen, anchor: 'tip',
-                showscale: false, colorscale: [[0, '#3355AA'], [1, '#3355AA']],
-                name: LABELS.geos[lang],
-                showlegend: false
-            });
             // 5. 기존 나선 전체 연결선(얇게, 배경)
             traces.push({
                 x: results.uVel,
                 y: results.vVel,
                 z: results.zLevels.map(z => -z),
-                mode: 'lines',
-                type: 'scatter3d',
+                    mode: 'lines',
+                    type: 'scatter3d',
                 line: {color: '#223366', width: 2, dash: 'dot'},
                 showlegend: false
             });
@@ -3325,7 +3295,7 @@
                  'Input Parameters']: {
                     [t('wind_speed')]: currentResults.windSpeed,
                     [t('wind_direction')]: currentResults.windDirection,
-                    [t('latitude')]: (currentResults.latitude > 0 ? '+' : '') + currentResults.latitude,
+                    [t('latitude')]: -currentResults.latitude,
                     [t('depth')]: currentResults.depth
                 },
                 [currentLanguage === 'ko' ? '계산 결과' :
