@@ -2297,7 +2297,9 @@
         function updateSliderValues() {
             document.getElementById('wind_speed_value').textContent = parseFloat(document.getElementById('wind_speed').value).toFixed(1);
             document.getElementById('wind_direction_value').textContent = parseFloat(document.getElementById('wind_direction').value).toFixed(0);
-            document.getElementById('latitude_value').textContent = parseFloat(document.getElementById('latitude').value).toFixed(0);
+            // 위도 값을 음수로 표시
+            const latitudeValue = parseFloat(document.getElementById('latitude').value);
+            document.getElementById('latitude_value').textContent = (-latitudeValue).toFixed(0);
             document.getElementById('depth_value').textContent = parseFloat(document.getElementById('depth').value).toFixed(0);
         }
         
@@ -2666,7 +2668,7 @@
                                                            currentLanguage === 'ja' ? '緯度' :
                                                            currentLanguage === 'es' ? 'Latitud' :
                                                            currentLanguage === 'ru' ? 'Широта' :
-                                                           'Latitude'}: ${results.latitude.toFixed(1)}°`,
+                                                           'Latitude'}: ${(-results.latitude).toFixed(1)}°`,
                     font: {color: colors.text, size: 16},
                     x: 0.5,
                     y: 0.95
@@ -2843,7 +2845,7 @@
                                                      currentLanguage === 'ja' ? '緯度' :
                                                      currentLanguage === 'es' ? 'Latitud' :
                                                      currentLanguage === 'ru' ? 'Широта' :
-                                                     'Latitude'}: ${results.latitude.toFixed(1)}°)`,
+                                                     'Latitude'}: ${(-results.latitude).toFixed(1)}°)`,
                     font: {color: colors.text, size: 16}
                 },
                 grid: {rows: 2, columns: 2, pattern: 'independent'},
