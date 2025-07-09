@@ -934,7 +934,7 @@
         
         .footer-links a:hover {
             color: var(--text-primary);
-            text-decoration: underline;
+            text-decoration: none;
         }
         
         .footer-links a::before {
@@ -980,6 +980,7 @@
         
         .footer-bottom a:hover {
             color: var(--text-primary);
+            text-decoration: none;
         }
         
         .version-info {
@@ -1048,6 +1049,236 @@
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 25px;
+            }
+        }
+        
+        /* 푸터 연락처 하이퍼링크: 기본은 일반 텍스트와 동일, 호버 시만 강조 */
+        .footer-contact a {
+            color: inherit;
+            text-decoration: none;
+            font: inherit;
+            font-size: inherit;
+            font-family: inherit;
+            transition: color 0.2s, text-decoration 0.2s;
+        }
+        .footer-contact a:hover {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        /* 솔루션 모달 스타일 */
+        .solution-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .solution-modal-content {
+            background-color: var(--bg-secondary);
+            margin: 2% auto;
+            padding: 0;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .solution-modal-header {
+            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .solution-modal-title {
+            color: var(--text-primary);
+            font-size: 16pt;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .solution-modal-close {
+            color: var(--text-secondary);
+            font-size: 24pt;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+        
+        .solution-modal-close:hover {
+            color: var(--text-primary);
+        }
+        
+        .solution-modal-body {
+            padding: 20px;
+            max-height: calc(90vh - 100px);
+            overflow-y: auto;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .solution-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+        
+        .solution-section h3 {
+            color: var(--text-primary);
+            font-size: 14pt;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .solution-section h4 {
+            color: var(--text-primary);
+            font-size: 12pt;
+            font-weight: 600;
+            margin: 15px 0 8px 0;
+        }
+        
+        .solution-section p {
+            margin: 8px 0;
+            font-size: 11pt;
+            color: var(--text-secondary);
+        }
+        
+        .solution-section ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        
+        .solution-section li {
+            margin: 6px 0;
+            font-size: 11pt;
+            color: var(--text-secondary);
+        }
+        
+        .solution-code {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            color: var(--text-primary);
+            overflow-x: auto;
+        }
+        
+        .solution-tip {
+            background: linear-gradient(135deg, #e8f4fd, #d1ecf1);
+            border-left: 4px solid #17a2b8;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        
+        .solution-warning {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+        
+        .solution-step {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .solution-step::before {
+            content: '📋';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-secondary);
+            padding: 4px;
+            border-radius: 50%;
+            font-size: 10pt;
+        }
+        
+        /* 다크 모드에서 솔루션 모달 스타일 조정 */
+        @media (prefers-color-scheme: dark) {
+            .solution-tip {
+                background: linear-gradient(135deg, #1a3a4a, #0f2d3a);
+                border-left-color: #17a2b8;
+            }
+            
+            .solution-warning {
+                background: linear-gradient(135deg, #3d2c1a, #2d1f13);
+                border-left-color: #ffc107;
+            }
+        }
+        
+        /* 모바일 솔루션 모달 최적화 */
+        @media screen and (max-width: 767px) {
+            .solution-modal-content {
+                width: 95%;
+                margin: 1% auto;
+                max-height: 95vh;
+            }
+            
+            .solution-modal-header {
+                padding: 12px 15px;
+            }
+            
+            .solution-modal-title {
+                font-size: 14pt;
+            }
+            
+            .solution-modal-body {
+                padding: 15px;
+                max-height: calc(95vh - 80px);
+            }
+            
+            .solution-section {
+                padding: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .solution-section h3 {
+                font-size: 12pt;
+            }
+            
+            .solution-section h4 {
+                font-size: 11pt;
+            }
+            
+            .solution-section p,
+            .solution-section li {
+                font-size: 10pt;
             }
         }
     </style>
@@ -1200,6 +1431,19 @@
         </div>
     </div>
     
+    <!-- 솔루션 모달 -->
+    <div id="solutionModal" class="solution-modal">
+        <div class="solution-modal-content">
+            <div class="solution-modal-header">
+                <h2 class="solution-modal-title">💡 솔루션 및 사용법 가이드</h2>
+                <button class="solution-modal-close" onclick="closeSolutionModal()">&times;</button>
+            </div>
+            <div class="solution-modal-body" id="solutionModalBody">
+                <!-- 동적으로 내용이 로드됩니다 -->
+            </div>
+        </div>
+    </div>
+    
     <!-- 푸터 -->
     <footer class="footer">
         <div class="footer-content">
@@ -1241,21 +1485,34 @@
                 </ul>
             </div>
             
+            <!-- 솔루션 및 사용법 -->
+            <div class="footer-section">
+                <h3>💡 솔루션 및 사용법</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="openSolutionModal(); return false;">📖 사용 방법 가이드</a></li>
+                    <li><a href="#" onclick="showQuickStart(); return false;">🚀 빠른 시작</a></li>
+                    <li><a href="#" onclick="showAdvancedUsage(); return false;">🔬 고급 사용법</a></li>
+                    <li><a href="#" onclick="showTroubleshooting(); return false;">🔧 문제 해결</a></li>
+                    <li><a href="#" onclick="showBestPractices(); return false;">⭐ 모범 사례</a></li>
+                    <li><a href="#" onclick="showCaseStudies(); return false;">📊 사례 연구</a></li>
+                </ul>
+            </div>
+            
             <!-- 연락처 및 지원 -->
             <div class="footer-section">
                 <h3>📞 연락처 및 지원</h3>
                 <div class="footer-contact">
                     <div class="contact-item">
                         <i>📧</i>
-                        <span>support@ekman-visualizer.com</span>
+                        <span><a href="mailto:pistolinkr@icloud.com">pistolinkr@icloud.com</a></span>
                     </div>
                     <div class="contact-item">
-                        <i>🌐</i>
-                        <span>https://ekman-visualizer.github.io</span>
+                        <i></i>
+                        <span><a href="https://github.com/pistolinkr" target="_blank" rel="noopener">https://github.com/pistolinkr</a></span>
                     </div>
                     <div class="contact-item">
                         <i>📚</i>
-                        <span>해양학 연구 커뮤니티</span>
+                        <span><a href="https://www.ksocean.or.kr/community/board.asp?boardID=1" target="_blank" rel="noopener">해양학 연구 커뮤니티</a></span>
                     </div>
                     <div class="contact-item">
                         <i>🔧</i>
@@ -1320,7 +1577,7 @@
                 'loc_equator': "🔆 Equator",
                 
                 // 차트 제목
-                'chart_title_3d': "🌊 3D Ekman Transport Visualization",
+                'chart_title_3d': "�� 3D Ekman Transport Visualization",
                 'chart_title_2d': "🌊 Ekman Transport Visualization",
                 'chart_title_mobile': "🌊 Ekman Transport Visualization",
                 
@@ -1330,7 +1587,47 @@
                 'unit_meter': "m",
                 'unit_wind_stress': "mN/m²",
                 'unit_transport': "m³/s",
-                'unit_energy': "mW/m²"
+                'unit_energy': "mW/m²",
+                'footer_project_title': "Ekman Transport Visualizer",
+                'footer_features_title': "Features",
+                'footer_tech_title': "Technical Info",
+                'footer_contact_title': "Contact & Support",
+                'footer_project_desc': "A professional tool for visualizing oceanographic phenomena. Analyzes wind-ocean current interactions based on Ekman transport theory.",
+                'footer_feature1': "Normal Wind Condition Simulation",
+                'footer_feature2': "Strong Wind Analysis",
+                'footer_feature3': "Typhoon Condition Modeling",
+                'footer_feature4': "3D Visualization",
+                'footer_feature5': "2D Analysis Charts",
+                'footer_feature6': "Export Results",
+                'footer_tech1': "Ekman Transport Theory",
+                'footer_tech2': "Coriolis Effect",
+                'footer_tech3': "Ekman Spiral",
+                'footer_tech4': "Wind Stress Calculation",
+                'footer_tech5': "Vertical Turbulence Modeling",
+                'footer_contact1': "pistolinkr@icloud.com",
+                'footer_contact2': "https://github.com/pistolinkr",
+                'footer_contact3': "Oceanography Research Community",
+                'footer_contact4': "Tech Support: 24/7",
+                'solution_title': "Solutions & Usage Guide",
+                'solution_quick_start': "Quick Start Guide",
+                'solution_advanced_usage': "Advanced Usage",
+                'solution_troubleshooting': "Troubleshooting",
+                'solution_best_practices': "Best Practices",
+                'solution_case_studies': "Case Studies",
+                'solution_quick_start_title': "Quick Start Guide",
+                'solution_quick_start_desc': "Step-by-step guide for first-time users of the Ekman Transport Visualization tool.",
+                'solution_step1_title': "Step 1: Basic Settings",
+                'solution_step2_title': "Step 2: Visualization Type Selection",
+                'solution_step3_title': "Step 3: Using Presets",
+                'solution_step4_title': "Step 4: Calculation and Results",
+                'solution_advanced_title': "Advanced Usage",
+                'solution_advanced_desc': "Methods for utilizing advanced features for professional oceanographic analysis.",
+                'solution_trouble_title': "Troubleshooting Guide",
+                'solution_trouble_desc': "Common problems and their solutions.",
+                'solution_best_title': "Best Practices",
+                'solution_best_desc': "Best practices for accurate and meaningful analysis.",
+                'solution_case_title': "Case Studies",
+                'solution_case_desc': "Concrete examples that can be utilized in actual oceanographic research."
             },
             'ko': {
                 // UI 요소들
@@ -1378,7 +1675,47 @@
                 'unit_meter': "m",
                 'unit_wind_stress': "mN/m²",
                 'unit_transport': "m³/s",
-                'unit_energy': "mW/m²"
+                'unit_energy': "mW/m²",
+                'footer_project_title': "에크만 수송 시각화",
+                'footer_features_title': "기능",
+                'footer_tech_title': "기술 정보",
+                'footer_contact_title': "연락처 및 지원",
+                'footer_project_desc': "해양학적 현상을 시각화하는 전문 도구입니다. 에크만 수송 이론을 기반으로 바람과 해류의 상호작용을 분석합니다.",
+                'footer_feature1': "일반 바람 조건 시뮬레이션",
+                'footer_feature2': "강풍 조건 분석",
+                'footer_feature3': "태풍 조건 모델링",
+                'footer_feature4': "3D 시각화",
+                'footer_feature5': "2D 분석 차트",
+                'footer_feature6': "결과 내보내기",
+                'footer_tech1': "에크만 수송 이론",
+                'footer_tech2': "코리올리 효과",
+                'footer_tech3': "에크만 나선",
+                'footer_tech4': "바람 응력 계산",
+                'footer_tech5': "수직 난류 모델링",
+                'footer_contact1': "pistolinkr@icloud.com",
+                'footer_contact2': "https://github.com/pistolinkr",
+                'footer_contact3': "해양학 연구 커뮤니티",
+                'footer_contact4': "기술 지원: 24/7",
+                'solution_title': "솔루션 및 사용법 가이드",
+                'solution_quick_start': "빠른 시작 가이드",
+                'solution_advanced_usage': "고급 사용법",
+                'solution_troubleshooting': "문제 해결",
+                'solution_best_practices': "모범 사례",
+                'solution_case_studies': "사례 연구",
+                'solution_quick_start_title': "빠른 시작 가이드",
+                'solution_quick_start_desc': "에크만 수송 시각화 도구를 처음 사용하시는 분들을 위한 단계별 가이드입니다.",
+                'solution_step1_title': "1단계: 기본 설정",
+                'solution_step2_title': "2단계: 시각화 타입 선택",
+                'solution_step3_title': "3단계: 사전 설정 활용",
+                'solution_step4_title': "4단계: 계산 및 결과 확인",
+                'solution_advanced_title': "고급 사용법",
+                'solution_advanced_desc': "전문적인 해양학 분석을 위한 고급 기능들을 활용하는 방법입니다.",
+                'solution_trouble_title': "문제 해결 가이드",
+                'solution_trouble_desc': "자주 발생하는 문제들과 해결 방법을 안내합니다.",
+                'solution_best_title': "모범 사례",
+                'solution_best_desc': "정확하고 의미 있는 분석을 위한 모범 사례들을 소개합니다.",
+                'solution_case_title': "사례 연구",
+                'solution_case_desc': "실제 해양학 연구에서 활용할 수 있는 구체적인 사례들을 소개합니다."
             },
             'zh': {
                 // UI 요소들
@@ -1426,7 +1763,33 @@
                 'unit_meter': "m",
                 'unit_wind_stress': "mN/m²",
                 'unit_transport': "m³/s",
-                'unit_energy': "mW/m²"
+                'unit_energy': "mW/m²",
+                'footer_project_title': "埃克曼输运可视化",
+                'footer_features_title': "功能",
+                'footer_tech_title': "技术信息",
+                'footer_contact_title': "联系与支持",
+                'footer_project_desc': "海洋现象可视化专业工具。基于埃克曼输运理论分析风与海流的相互作用。",
+                'footer_feature1': "正常风况模拟",
+                'footer_feature2': "强风分析",
+                'footer_feature3': "台风条件建模",
+                'footer_feature4': "3D可视化",
+                'footer_feature5': "2D分析图表",
+                'footer_feature6': "导出结果",
+                'footer_tech1': "埃克曼输运理论",
+                'footer_tech2': "科里奥利效应",
+                'footer_tech3': "埃克曼螺旋",
+                'footer_tech4': "风应力计算",
+                'footer_tech5': "垂直湍流建模",
+                'footer_contact1': "pistolinkr@icloud.com",
+                'footer_contact2': "https://github.com/pistolinkr",
+                'footer_contact3': "海洋学研究社区",
+                'footer_contact4': "技术支持: 24/7",
+                'solution_title': "解决方案和使用指南",
+                'solution_quick_start': "快速入门指南",
+                'solution_advanced_usage': "高级使用方法",
+                'solution_troubleshooting': "故障排除",
+                'solution_best_practices': "最佳实践",
+                'solution_case_studies': "案例研究"
             },
             'ja': {
                 // UI 요소들
@@ -1474,7 +1837,33 @@
                 'unit_meter': "m",
                 'unit_wind_stress': "mN/m²",
                 'unit_transport': "m³/s",
-                'unit_energy': "mW/m²"
+                'unit_energy': "mW/m²",
+                'footer_project_title': "エクマン輸送可視化",
+                'footer_features_title': "機能",
+                'footer_tech_title': "技術情報",
+                'footer_contact_title': "お問い合わせとサポート",
+                'footer_project_desc': "海洋現象を可視化する専門ツールです。エクマン輸送理論に基づいて風と海流の相互作用を分析します。",
+                'footer_feature1': "通常の風条件シミュレーション",
+                'footer_feature2': "強風分析",
+                'footer_feature3': "台風条件モデリング",
+                'footer_feature4': "3D可視化",
+                'footer_feature5': "2D分析チャート",
+                'footer_feature6': "結果エクスポート",
+                'footer_tech1': "エクマン輸送理論",
+                'footer_tech2': "コリオリ効果",
+                'footer_tech3': "エクマン螺旋",
+                'footer_tech4': "風応力計算",
+                'footer_tech5': "鉛直乱流モデリング",
+                'footer_contact1': "pistolinkr@icloud.com",
+                'footer_contact2': "https://github.com/pistolinkr",
+                'footer_contact3': "海洋学研究コミュニティ",
+                'footer_contact4': "技術サポート: 24/7",
+                'solution_title': "ソリューションと使用ガイド",
+                'solution_quick_start': "クイックスタートガイド",
+                'solution_advanced_usage': "高度な使用方法",
+                'solution_troubleshooting': "トラブルシューティング",
+                'solution_best_practices': "ベストプラクティス",
+                'solution_case_studies': "ケーススタディ"
             },
             'es': {
                 // UI 요소들
@@ -1522,7 +1911,33 @@
                 'unit_meter': "m",
                 'unit_wind_stress': "mN/m²",
                 'unit_transport': "m³/s",
-                'unit_energy': "mW/m²"
+                'unit_energy': "mW/m²",
+                'footer_project_title': "Visualizador de Transporte de Ekman",
+                'footer_features_title': "Características",
+                'footer_tech_title': "Información Técnica",
+                'footer_contact_title': "Contacto y Soporte",
+                'footer_project_desc': "Herramienta profesional para visualizar fenómenos oceanográficos. Analiza las interacciones viento-corriente oceánica basadas en la teoría del transporte de Ekman.",
+                'footer_feature1': "Simulación de Condiciones Normales de Viento",
+                'footer_feature2': "Análisis de Viento Fuerte",
+                'footer_feature3': "Modelado de Condiciones de Tifón",
+                'footer_feature4': "Visualización 3D",
+                'footer_feature5': "Gráficos de Análisis 2D",
+                'footer_feature6': "Exportar Resultados",
+                'footer_tech1': "Teoría del Transporte de Ekman",
+                'footer_tech2': "Efecto Coriolis",
+                'footer_tech3': "Espiral de Ekman",
+                'footer_tech4': "Cálculo del Esfuerzo del Viento",
+                'footer_tech5': "Modelado de Turbulencia Vertical",
+                'footer_contact1': "support@ekman-visualizer.com",
+                'footer_contact2': "https://ekman-visualizer.github.io",
+                'footer_contact3': "Comunidad de Investigación Oceanográfica",
+                'footer_contact4': "Soporte Técnico: 24/7",
+                'solution_title': "Soluciones y Guía de Uso",
+                'solution_quick_start': "Guía de Inicio Rápido",
+                'solution_advanced_usage': "Uso Avanzado",
+                'solution_troubleshooting': "Solución de Problemas",
+                'solution_best_practices': "Mejores Prácticas",
+                'solution_case_studies': "Estudios de Caso"
             },
             'ru': {
                 // UI 요소들
@@ -1570,7 +1985,33 @@
                 'unit_meter': "м",
                 'unit_wind_stress': "мН/м²",
                 'unit_transport': "м³/с",
-                'unit_energy': "мВт/м²"
+                'unit_energy': "мВт/м²",
+                'footer_project_title': "Визуализатор Переноса Экмана",
+                'footer_features_title': "Функции",
+                'footer_tech_title': "Техническая информация",
+                'footer_contact_title': "Контакты и поддержка",
+                'footer_project_desc': "Профессиональный инструмент для визуализации океанографических явлений. Анализирует взаимодействие ветра и океанических течений на основе теории переноса Экмана.",
+                'footer_feature1': "Симуляция нормальных ветровых условий",
+                'footer_feature2': "Анализ сильного ветра",
+                'footer_feature3': "Моделирование условий тайфуна",
+                'footer_feature4': "3D Визуализация",
+                'footer_feature5': "2D Аналитические графики",
+                'footer_feature6': "Экспорт результатов",
+                'footer_tech1': "Теория переноса Экмана",
+                'footer_tech2': "Эффект Кориолиса",
+                'footer_tech3': "Спираль Экмана",
+                'footer_tech4': "Расчет напряжения ветра",
+                'footer_tech5': "Моделирование вертикальной турбулентности",
+                'footer_contact1': "pistolinkr@icloud.com",
+                'footer_contact2': "https://github.com/pistolinkr",
+                'footer_contact3': "Сообщество исследователей океанографии",
+                'footer_contact4': "Техническая поддержка: 24/7",
+                'solution_title': "Решения и руководство по использованию",
+                'solution_quick_start': "Быстрый старт",
+                'solution_advanced_usage': "Продвинутое использование",
+                'solution_troubleshooting': "Устранение неполадок",
+                'solution_best_practices': "Лучшие практики",
+                'solution_case_studies': "Примеры использования"
             }
         };
         
@@ -1679,63 +2120,98 @@
         
         // 푸터 텍스트 업데이트 함수
         function updateFooterTexts() {
-            // 푸터가 존재하는지 확인
             const footer = document.querySelector('.footer');
             if (!footer) return;
-            
-            // 프로젝트 설명 업데이트
+            // translations에 푸터 관련 텍스트 추가
+            const footerT = translations[currentLanguage] || translations['en'];
+            // 섹션 제목
+            const sectionTitles = footer.querySelectorAll('.footer-section h3');
+            if (sectionTitles.length >= 4) {
+                sectionTitles[0].innerHTML = `🌊 ${footerT['footer_project_title'] || 'Ekman Transport Visualizer'}`;
+                sectionTitles[1].innerHTML = `⚡ ${footerT['footer_features_title'] || 'Features'}`;
+                sectionTitles[2].innerHTML = `🔬 ${footerT['footer_tech_title'] || 'Technical Info'}`;
+                sectionTitles[3].innerHTML = `📞 ${footerT['footer_contact_title'] || 'Contact & Support'}`;
+            }
+            // 프로젝트 설명
             const projectDesc = footer.querySelector('.footer-section p');
             if (projectDesc) {
-                const descriptions = {
-                    'ko': '해양학적 현상을 시각화하는 전문 도구입니다. 에크만 수송 이론을 기반으로 바람과 해류의 상호작용을 분석합니다.',
-                    'en': 'A professional tool for visualizing oceanographic phenomena. Analyzes wind-ocean current interactions based on Ekman transport theory.',
-                    'zh': '海洋现象可视化专业工具。基于埃克曼输运理论分析风与海流的相互作用。',
-                    'ja': '海洋現象を可視化する専門ツールです。エクマン輸送理論に基づいて風と海流の相互作用を分析します。',
-                    'es': 'Herramienta profesional para visualizar fenómenos oceanográficos. Analiza las interacciones viento-corriente oceánica basadas en la teoría del transporte de Ekman.',
-                    'ru': 'Профессиональный инструмент для визуализации океанографических явлений. Анализирует взаимодействие ветра и океанических течений на основе теории переноса Экмана.'
-                };
-                projectDesc.textContent = descriptions[currentLanguage] || descriptions['en'];
+                projectDesc.textContent = footerT['footer_project_desc'] || 'A professional tool for visualizing oceanographic phenomena. Analyzes wind-ocean current interactions based on Ekman transport theory.';
             }
-            
-            // 주요 기능 링크 업데이트
-            const featureLinks = footer.querySelectorAll('.footer-links a');
-            if (featureLinks.length > 0) {
-                const featureTexts = {
-                    'ko': ['일반 바람 조건 시뮬레이션', '강풍 조건 분석', '태풍 조건 모델링', '3D 시각화', '2D 분석 차트', '결과 내보내기'],
-                    'en': ['Normal Wind Condition Simulation', 'Strong Wind Analysis', 'Typhoon Condition Modeling', '3D Visualization', '2D Analysis Charts', 'Export Results'],
-                    'zh': ['正常风况模拟', '强风分析', '台风条件建模', '3D可视化', '2D分析图表', '导出结果'],
-                    'ja': ['通常風条件シミュレーション', '強風分析', '台風条件モデリング', '3D可視化', '2D分析チャート', '結果エクスポート'],
-                    'es': ['Simulación de Condiciones Normales de Viento', 'Análisis de Viento Fuerte', 'Modelado de Condiciones de Tifón', 'Visualización 3D', 'Gráficos de Análisis 2D', 'Exportar Resultados'],
-                    'ru': ['Симуляция нормальных ветровых условий', 'Анализ сильного ветра', 'Моделирование условий тайфуна', '3D визуализация', '2D аналитические графики', 'Экспорт результатов']
-                };
-                
-                const texts = featureTexts[currentLanguage] || featureTexts['en'];
-                featureLinks.forEach((link, index) => {
-                    if (texts[index]) {
-                        link.textContent = texts[index];
-                    }
-                });
-            }
-            
-            // 기술 정보 링크 업데이트
+            // 주요 기능
+            const featureLinks = footer.querySelectorAll('.footer-section:nth-child(2) .footer-links a');
+            const featureTexts = [
+                footerT['footer_feature1'] || 'Normal Wind Condition Simulation',
+                footerT['footer_feature2'] || 'Strong Wind Analysis',
+                footerT['footer_feature3'] || 'Typhoon Condition Modeling',
+                footerT['footer_feature4'] || '3D Visualization',
+                footerT['footer_feature5'] || '2D Analysis Charts',
+                footerT['footer_feature6'] || 'Export Results'
+            ];
+            featureLinks.forEach((link, i) => { if (featureTexts[i]) link.textContent = featureTexts[i]; });
+            // 기술 정보
             const techLinks = footer.querySelectorAll('.footer-section:nth-child(3) .footer-links a');
-            if (techLinks.length > 0) {
-                const techTexts = {
-                    'ko': ['에크만 수송 이론', '코리올리 효과', '에크만 나선', '바람 응력 계산', '수직 난류 모델링'],
-                    'en': ['Ekman Transport Theory', 'Coriolis Effect', 'Ekman Spiral', 'Wind Stress Calculation', 'Vertical Turbulence Modeling'],
-                    'zh': ['埃克曼输运理论', '科里奥利效应', '埃克曼螺旋', '风应力计算', '垂直湍流建模'],
-                    'ja': ['エクマン輸送理論', 'コリオリ効果', 'エク마ン螺旋', '風応力計算', '鉛直乱流モデリング'],
-                    'es': ['Teoría del Transporte de Ekman', 'Efecto Coriolis', 'Espiral de Ekman', 'Cálculo del Esfuerzo del Viento', 'Modelado de Turbulencia Vertical'],
-                    'ru': ['Теория переноса Экмана', 'Эффект Кориолиса', 'Спираль Экмана', 'Расчет напряжения ветра', 'Моделирование вертикальной турбулентности']
-                };
-                
-                const texts = techTexts[currentLanguage] || techTexts['en'];
-                techLinks.forEach((link, index) => {
-                    if (texts[index]) {
-                        link.textContent = texts[index];
+            const techTexts = [
+                footerT['footer_tech1'] || 'Ekman Transport Theory',
+                footerT['footer_tech2'] || 'Coriolis Effect',
+                footerT['footer_tech3'] || 'Ekman Spiral',
+                footerT['footer_tech4'] || 'Wind Stress Calculation',
+                footerT['footer_tech5'] || 'Vertical Turbulence Modeling'
+            ];
+            techLinks.forEach((link, i) => { if (techTexts[i]) link.textContent = techTexts[i]; });
+            // 연락처
+            const contactItems = footer.querySelectorAll('.footer-contact .contact-item span');
+            const contactTexts = [
+                footerT['footer_contact1'] || 'support@ekman-visualizer.com',
+                footerT['footer_contact2'] || 'https://ekman-visualizer.github.io',
+                footerT['footer_contact3'] || 'Oceanography Research Community',
+                footerT['footer_contact4'] || 'Tech Support: 24/7'
+            ];
+            contactItems.forEach((span, i) => {
+                if (contactTexts[i]) {
+                    if (i === 0) {
+                        // 이메일 하이퍼링크
+                        const email = contactTexts[i];
+                        span.innerHTML = `<a href=\"mailto:${email}\">${email}</a>`;
+                    } else if (i === 1) {
+                        // 깃허브 하이퍼링크
+                        const url = contactTexts[i];
+                        span.innerHTML = `<a href=\"${url}\" target=\"_blank\" rel=\"noopener\">${url}</a>`;
+                    } else if (i === 2) {
+                        // 해양학 연구 커뮤니티 하이퍼링크
+                        const communityText = contactTexts[i];
+                        span.innerHTML = `<a href=\"https://www.ksocean.or.kr/community/board.asp?boardID=1\" target=\"_blank\" rel=\"noopener\">${communityText}</a>`;
+                    } else {
+                        span.textContent = contactTexts[i];
                     }
-                });
-            }
+                }
+            });
+            
+            // 솔루션 탭 링크들 업데이트
+            const solutionLinks = footer.querySelectorAll('.footer-section:nth-child(4) .footer-links a');
+            const solutionTexts = [
+                footerT['solution_quick_start'] || 'Quick Start Guide',
+                footerT['solution_advanced_usage'] || 'Advanced Usage',
+                footerT['solution_troubleshooting'] || 'Troubleshooting',
+                footerT['solution_best_practices'] || 'Best Practices',
+                footerT['solution_case_studies'] || 'Case Studies'
+            ];
+            solutionLinks.forEach((link, i) => { 
+                if (solutionTexts[i]) {
+                    if (i === 0) {
+                        link.textContent = `📖 ${solutionTexts[i]}`;
+                    } else if (i === 1) {
+                        link.textContent = `🚀 ${solutionTexts[i]}`;
+                    } else if (i === 2) {
+                        link.textContent = `🔬 ${solutionTexts[i]}`;
+                    } else if (i === 3) {
+                        link.textContent = `🔧 ${solutionTexts[i]}`;
+                    } else if (i === 4) {
+                        link.textContent = `⭐ ${solutionTexts[i]}`;
+                    } else if (i === 5) {
+                        link.textContent = `📊 ${solutionTexts[i]}`;
+                    }
+                }
+            });
         }
         
         // 언어 변경 함수
@@ -2484,99 +2960,91 @@
             const traces = [];
             const colors = getThemeColors();
             const speeds = results.uVel.map((u, i) => Math.sqrt(u*u + results.vVel[i]*results.vVel[i]));
-            
-            // 에크만 나선 3D
+            const depth = results.depth;
+            // 라벨 다국어 지원
+            const LABELS = {
+                windstress: {
+                    ko: '바람 응력', en: 'Windstress', zh: '风应力', ja: '風応力', es: 'Esfuerzo del viento', ru: 'Ветровое напряжение'
+                },
+                ekman: {
+                    ko: '에크만 수송', en: 'Ekman Transport', zh: '埃克曼输运', ja: 'エクマン輸送', es: 'Transporte de Ekman', ru: 'Перенос Экмана'
+                },
+                geos: {
+                    ko: '지오스트로픽 수송', en: 'Geostrophic Transport', zh: '地转输运', ja: '地衡流輸送', es: 'Transporte geostrófico', ru: 'Геострофический перенос'
+                }
+            };
+            const lang = currentLanguage in LABELS.windstress ? currentLanguage : 'en';
+            // 1. Ekman Spiral (얇은 파란색 벡터)
+            for (let i = 0; i < results.zLevels.length; i++) {
+                traces.push({
+                    x: [0, results.uVel[i] * 1.5],
+                    y: [0, results.vVel[i] * 1.5],
+                    z: [-results.zLevels[i], -results.zLevels[i]],
+                    mode: 'lines',
+                    type: 'scatter3d',
+                    line: {color: '#223366', width: 3},
+                    showlegend: false
+                });
+            }
+            // 2. Windstress (굵은 오렌지 화살표, 표면)
+            const windDirRad = results.windDirection * Math.PI / 180;
+            const windLen = Math.max(...speeds) * 3 || 2;
+            const windX = windLen * Math.cos(windDirRad);
+            const windY = windLen * Math.sin(windDirRad);
+            traces.push({
+                x: [0, windX], y: [0, windY], z: [0, 0],
+                mode: 'lines+markers+text',
+                type: 'scatter3d',
+                line: {color: '#FF7F32', width: 14},
+                marker: {size: 10, color: '#FF7F32'},
+                name: LABELS.windstress[lang],
+                text: ['', LABELS.windstress[lang]],
+                textposition: 'top right',
+                showlegend: true
+            });
+            // 3. Ekman Transport (굵은 연두색 화살표, 표면)
+            const transportScale = windLen * 0.7;
+            const transportMag = Math.sqrt(results.Mx**2 + results.My**2);
+            const ekmanX = (results.Mx / (transportMag || 1)) * transportScale;
+            const ekmanY = (results.My / (transportMag || 1)) * transportScale;
+            traces.push({
+                x: [0, ekmanX], y: [0, ekmanY], z: [0, 0],
+                mode: 'lines+markers+text',
+                type: 'scatter3d',
+                line: {color: '#A3D977', width: 14},
+                marker: {size: 10, color: '#A3D977'},
+                name: LABELS.ekman[lang],
+                text: ['', LABELS.ekman[lang]],
+                textposition: 'middle right',
+                showlegend: true
+            });
+            // 4. Geostrophic Transport (굵은 파란색 화살표, 바닥, 예시로 대각선)
+            const geoLen = windLen * 0.8;
+            const geoAngle = windDirRad + Math.PI / 3; // 예시로 바람방향에서 60도
+            const geoX = geoLen * Math.cos(geoAngle);
+            const geoY = geoLen * Math.sin(geoAngle);
+            traces.push({
+                x: [0, geoX], y: [0, geoY], z: [-depth, -depth],
+                mode: 'lines+markers+text',
+                type: 'scatter3d',
+                line: {color: '#3355AA', width: 14},
+                marker: {size: 10, color: '#3355AA'},
+                name: LABELS.geos[lang],
+                text: ['', LABELS.geos[lang]],
+                textposition: 'bottom left',
+                showlegend: true
+            });
+            // 5. 기존 나선 전체 연결선(얇게, 배경)
             traces.push({
                 x: results.uVel,
                 y: results.vVel,
                 z: results.zLevels.map(z => -z),
-                mode: 'lines+markers',
+                mode: 'lines',
                 type: 'scatter3d',
-                line: {
-                    color: speeds,
-                    colorscale: 'Viridis',
-                    width: 8,
-                    colorbar: {
-                        title: {
-                            text: t('wind_speed').includes('속도') ? "속도 크기 (m/s)" : 
-                                  t('wind_speed').includes('速度') ? "流速 (m/s)" :
-                                  t('wind_speed').includes('Wind') ? "Current Speed (m/s)" :
-                                  t('wind_speed').includes('Velocidad') ? "Velocidad de Corriente (m/s)" :
-                                  t('wind_speed').includes('Скорость') ? "Скорость течения (м/с)" :
-                                  "流速 (m/s)", 
-                            font: {color: colors.text, size: 16},
-                            side: 'right'
-                        },
-                        bgcolor: colors.background,
-                        bordercolor: colors.grid,
-                        borderwidth: 2,
-                        tickfont: {color: colors.text, size: 14},
-                        len: 0.8,
-                        thickness: 25,
-                        x: 1.02,
-                        xanchor: 'left',
-                        y: 0.5,
-                        yanchor: 'middle'
-                    }
-                },
-                marker: {size: 4, color: speeds, colorscale: 'Viridis'},
-                name: currentLanguage === 'ko' ? '에크만 나선' :
-                      currentLanguage === 'zh' ? '埃克曼螺线' :
-                      currentLanguage === 'ja' ? 'エクマン螺旋' :
-                      currentLanguage === 'es' ? 'Espiral de Ekman' :
-                      currentLanguage === 'ru' ? 'Спираль Экмана' :
-                      'Ekman Spiral'
+                line: {color: '#223366', width: 2, dash: 'dot'},
+                showlegend: false
             });
-            
-            // 바람 벡터
-            const windDirRad = results.windDirection * Math.PI / 180;
-            const windX = results.windSpeed * Math.cos(windDirRad) * 0.01;
-            const windY = results.windSpeed * Math.sin(windDirRad) * 0.01;
-            
-            traces.push({
-                x: [0, windX], y: [0, windY], z: [10, 10],
-                mode: 'lines+markers',
-                type: 'scatter3d',
-                line: {color: '#FF6B35', width: 10},
-                marker: {size: 8, color: '#FF6B35'},
-                name: `🌬️ ${currentLanguage === 'ko' ? '바람' :
-                            currentLanguage === 'zh' ? '风' :
-                            currentLanguage === 'ja' ? '風' :
-                            currentLanguage === 'es' ? 'Viento' :
-                            currentLanguage === 'ru' ? 'Ветер' :
-                            'Wind'} ${results.windSpeed.toFixed(1)} m/s`
-            });
-            
-            // 에크만 깊이별 벡터 필드 표시
-            const step = Math.max(1, Math.floor(results.zLevels.length / 8));
-            for (let i = 0; i < results.zLevels.length; i += step) {
-                const scale = 0.02;
-                const alpha = 0.6;
-                traces.push({
-                    x: [0, results.uVel[i] * scale],
-                    y: [0, results.vVel[i] * scale],
-                    z: [-results.zLevels[i], -results.zLevels[i]],
-                    mode: 'lines',
-                    type: 'scatter3d',
-                    line: {
-                        color: `rgba(${isDarkMode() ? '100, 149, 237' : '30, 144, 255'}, ${alpha})`,
-                        width: 4
-                    },
-                    showlegend: false,
-                    hovertemplate: `${currentLanguage === 'ko' ? '깊이' :
-                                   currentLanguage === 'zh' ? '深度' :
-                                   currentLanguage === 'ja' ? '深度' :
-                                   currentLanguage === 'es' ? 'Profundidad' :
-                                   currentLanguage === 'ru' ? 'Глубина' :
-                                   'Depth'}: ${results.zLevels[i].toFixed(1)}m<br>${currentLanguage === 'ko' ? '속도' :
-                                                                                currentLanguage === 'zh' ? '速度' :
-                                                                                currentLanguage === 'ja' ? '速度' :
-                                                                                currentLanguage === 'es' ? 'Velocidad' :
-                                                                                currentLanguage === 'ru' ? 'Скорость' :
-                                                                                'Speed'}: ${speeds[i].toFixed(4)} m/s<extra></extra>`
-                });
-            }
-            
+            // 레이아웃 및 라벨
             const layout = {
                 title: {
                     text: t('chart_title_3d') + `<br>${currentLanguage === 'ko' ? '위도' :
@@ -2592,24 +3060,24 @@
                 scene: {
                     bgcolor: colors.background,
                     xaxis: {
-                        title: {text: `U ${currentLanguage === 'ko' ? '속도 (동-서, m/s)' :
-                                      currentLanguage === 'zh' ? '速度 (东-西, m/s)' :
-                                      currentLanguage === 'ja' ? '速度 (東-西, m/s)' :
-                                      currentLanguage === 'es' ? 'Velocidad (Este-Oeste, m/s)' :
-                                      currentLanguage === 'ru' ? 'Скорость (Восток-Запад, м/с)' :
-                                      'Velocity (East-West, m/s)'}`, font: {color: colors.text, size: 14}},
+                        title: {text: `${currentLanguage === 'ko' ? '속도/수송 (동-서, m/s)' :
+                                      currentLanguage === 'zh' ? '速度/输运 (东-西, m/s)' :
+                                      currentLanguage === 'ja' ? '速度/輸送 (東-西, m/s)' :
+                                      currentLanguage === 'es' ? 'Velocidad/Transporte (Este-Oeste, m/s)' :
+                                      currentLanguage === 'ru' ? 'Скорость/Перенос (Восток-Запад, м/с)' :
+                                      'Velocity/Transport (East-West, m/s)'}`, font: {color: colors.text, size: 14}},
                         gridcolor: colors.grid,
                         tickfont: {color: colors.text, size: 12},
                         linecolor: colors.grid,
                         backgroundcolor: colors.background
                     },
                     yaxis: {
-                        title: {text: `V ${currentLanguage === 'ko' ? '속도 (남-북, m/s)' :
-                                      currentLanguage === 'zh' ? '速度 (南-北, m/s)' :
-                                      currentLanguage === 'ja' ? '速度 (南-北, m/s)' :
-                                      currentLanguage === 'es' ? 'Velocidad (Sur-Norte, m/s)' :
-                                      currentLanguage === 'ru' ? 'Скорость (Юг-Север, м/с)' :
-                                      'Velocity (South-North, m/s)'}`, font: {color: colors.text, size: 14}},
+                        title: {text: `${currentLanguage === 'ko' ? '속도/수송 (남-북, m/s)' :
+                                      currentLanguage === 'zh' ? '速度/输运 (南-北, m/s)' :
+                                      currentLanguage === 'ja' ? '速度/輸送 (南-北, m/s)' :
+                                      currentLanguage === 'es' ? 'Velocidad/Transporte (Sur-Norte, m/s)' :
+                                      currentLanguage === 'ru' ? 'Скорость/Перенос (Юг-Север, м/с)' :
+                                      'Velocity/Transport (South-North, m/s)'}`, font: {color: colors.text, size: 14}},
                         gridcolor: colors.grid,
                         tickfont: {color: colors.text, size: 12},
                         linecolor: colors.grid,
@@ -2623,7 +3091,8 @@
                         backgroundcolor: colors.background
                     },
                     camera: {
-                        eye: {x: 1.8, y: 1.8, z: 1.5}
+                        eye: {x: 1.5, y: 1.5, z: 1.2},
+                        center: {x: 0, y: 0, z: 0}
                     },
                     aspectmode: 'cube'
                 },
@@ -2639,9 +3108,9 @@
                     bgcolor: 'rgba(0,0,0,0)',
                     x: 0.02,
                     y: 0.98
-                }
+                },
+                annotations: []
             };
-            
             return {data: traces, layout: layout};
         }
         
@@ -2811,7 +3280,6 @@
                 console.log(message);
                 return;
             }
-            
             const exportData = {
                 [currentLanguage === 'ko' ? '입력 파라미터' :
                  currentLanguage === 'zh' ? '输入参数' :
@@ -2854,16 +3322,18 @@
                      'Coriolis Parameter']: currentResults.f.toExponential(6)
                 }
             };
-            
-            const message = currentLanguage === 'ko' ? "📊 내보내기 데이터:" :
-                           currentLanguage === 'zh' ? "📊 导出数据:" :
-                           currentLanguage === 'ja' ? "📊 エクスポートデータ:" :
-                           currentLanguage === 'es' ? "📊 Datos de exportación:" :
-                           currentLanguage === 'ru' ? "📊 Данные экспорта:" :
-                           "📊 Export Data:";
-            
-            console.log(message);
-            console.log(JSON.stringify(exportData, null, 2));
+            // 실제 다운로드 기능 추가
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], {type: "application/json"});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "ekman_export.json";
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 0);
         }
         
                 // 테마 변경 감지 및 차트 업데이트 (디바이스별 최적화)
@@ -3040,6 +3510,269 @@
                                     `🌍 Multi-language support activated (current: ${currentLanguage})`;
             console.log(multiLangMessage);
         });
+        
+        // 💡 솔루션 모달 관련 함수들
+        function openSolutionModal() {
+            document.getElementById('solutionModal').style.display = 'block';
+            // 모달 제목을 현재 언어로 업데이트
+            document.querySelector('.solution-modal-title').textContent = `💡 ${t('solution_title')}`;
+            showQuickStart(); // 기본적으로 빠른 시작 페이지 표시
+        }
+        
+        function closeSolutionModal() {
+            document.getElementById('solutionModal').style.display = 'none';
+        }
+        
+        // 모달 외부 클릭 시 닫기
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('solutionModal');
+            if (event.target === modal) {
+                closeSolutionModal();
+            }
+        });
+        
+        // 빠른 시작 가이드
+        function showQuickStart() {
+            const modalBody = document.getElementById('solutionModalBody');
+            modalBody.innerHTML = `
+                <div class="solution-section">
+                    <h3>🚀 ${t('solution_quick_start_title')}</h3>
+                    <p>${t('solution_quick_start_desc')}</p>
+                    
+                    <div class="solution-step">
+                        <h4>${t('solution_step1_title')}</h4>
+                        <ul>
+                            <li>🌬️ <strong>${t('wind_speed')}</strong>: 0-30 m/s ${currentLanguage === 'ko' ? '범위에서 설정 (기본값: 10 m/s)' : 'range (default: 10 m/s)'}</li>
+                            <li>🧭 <strong>${t('wind_direction')}</strong>: 0-360° ${currentLanguage === 'ko' ? '범위에서 설정 (기본값: 0도)' : 'range (default: 0°)'}</li>
+                            <li>🌍 <strong>${t('latitude')}</strong>: -90° to 90° ${currentLanguage === 'ko' ? '범위에서 설정 (기본값: 30도)' : 'range (default: 30°)'}</li>
+                            <li>🌊 <strong>${t('depth')}</strong>: 10-500m ${currentLanguage === 'ko' ? '범위에서 설정 (기본값: 100m)' : 'range (default: 100m)'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>${t('solution_step2_title')}</h4>
+                        <ul>
+                            <li>🔮 <strong>${t('vis_3d')}</strong>: ${currentLanguage === 'ko' ? '입체적인 에크만 나선과 수송 벡터 확인' : '3D Ekman spiral and transport vectors'}</li>
+                            <li>📈 <strong>${t('vis_2d')}</strong>: ${currentLanguage === 'ko' ? '평면에서의 해류 패턴과 깊이별 변화 분석' : '2D current patterns and depth variations'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>${t('solution_step3_title')}</h4>
+                        <ul>
+                            <li>🌤️ <strong>${t('preset_normal')}</strong>: ${currentLanguage === 'ko' ? '평상시 바람 조건 (10 m/s)' : 'Normal wind conditions (10 m/s)'}</li>
+                            <li>💨 <strong>${t('preset_strong')}</strong>: ${currentLanguage === 'ko' ? '강한 바람 조건 (20 m/s)' : 'Strong wind conditions (20 m/s)'}</li>
+                            <li>🌪️ <strong>${t('preset_typhoon')}</strong>: ${currentLanguage === 'ko' ? '극한 바람 조건 (30 m/s)' : 'Extreme wind conditions (30 m/s)'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-step">
+                        <h4>${t('solution_step4_title')}</h4>
+                        <ul>
+                            <li>🔄 <strong>${t('calc_button')}</strong> ${currentLanguage === 'ko' ? '버튼 클릭' : 'button click'}</li>
+                            <li>📊 <strong>${currentLanguage === 'ko' ? '결과 확인' : 'Check results'}</strong>: ${currentLanguage === 'ko' ? '바람 응력, 에크만 깊이, 총 수송량 등' : 'Wind stress, Ekman depth, total transport, etc.'}</li>
+                            <li>💾 <strong>${t('export_button')}</strong>: ${currentLanguage === 'ko' ? 'JSON 형태로 데이터 저장' : 'Save data as JSON'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-tip">
+                        <strong>💡 ${currentLanguage === 'ko' ? '팁:' : 'Tip:'}</strong> ${currentLanguage === 'ko' ? '처음 사용하시는 분들은 "일반" 사전 설정부터 시작하시는 것을 권장합니다.' : 'For first-time users, we recommend starting with the "Normal" preset.'}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 고급 사용법
+        function showAdvancedUsage() {
+            const modalBody = document.getElementById('solutionModalBody');
+            modalBody.innerHTML = `
+                <div class="solution-section">
+                    <h3>🔬 ${t('solution_advanced_title')}</h3>
+                    <p>${t('solution_advanced_desc')}</p>
+                    
+                    <div class="solution-section">
+                        <h4>🌊 ${currentLanguage === 'ko' ? '지역별 특성 분석' : 'Regional Characteristic Analysis'}</h4>
+                        <ul>
+                            <li><strong>${currentLanguage === 'ko' ? '북태평양' : 'North Pacific'}</strong>: ${currentLanguage === 'ko' ? '강한 서풍과 쿠로시오 해류의 상호작용' : 'Strong westerlies and Kuroshio Current interaction'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '북대서양' : 'North Atlantic'}</strong>: ${currentLanguage === 'ko' ? '걸프 해류와 북대서양 해류의 복합 효과' : 'Gulf Stream and North Atlantic Current combined effects'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '남극해' : 'Southern Ocean'}</strong>: ${currentLanguage === 'ko' ? '극지방의 강한 서풍과 남극 순환' : 'Polar strong westerlies and Antarctic circulation'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '적도' : 'Equator'}</strong>: ${currentLanguage === 'ko' ? '코리올리 효과가 최소화된 지역' : 'Region with minimized Coriolis effect'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-section">
+                        <h4>📊 ${currentLanguage === 'ko' ? '3D 시각화 심화 분석' : '3D Visualization Deep Analysis'}</h4>
+                        <ul>
+                            <li><strong>${currentLanguage === 'ko' ? '에크만 나선' : 'Ekman Spiral'}</strong>: ${currentLanguage === 'ko' ? '깊이에 따른 해류 방향 변화 패턴' : 'Current direction change pattern with depth'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '수송 벡터' : 'Transport Vectors'}</strong>: ${currentLanguage === 'ko' ? '바람 응력에 의한 해수 이동량' : 'Seawater transport due to wind stress'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '에너지 전달' : 'Energy Transfer'}</strong>: ${currentLanguage === 'ko' ? '바람에서 해수로의 에너지 전달률' : 'Energy transfer rate from wind to seawater'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-section">
+                        <h4>🔧 ${currentLanguage === 'ko' ? '파라미터 최적화' : 'Parameter Optimization'}</h4>
+                        <ul>
+                            <li><strong>${currentLanguage === 'ko' ? '위도별 코리올리 효과' : 'Latitude-dependent Coriolis Effect'}</strong>: ${currentLanguage === 'ko' ? '위도가 높을수록 코리올리 효과 증가' : 'Coriolis effect increases with latitude'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '바람 속도와 응력' : 'Wind Speed and Stress'}</strong>: ${currentLanguage === 'ko' ? '바람 속도의 제곱에 비례하는 응력' : 'Stress proportional to wind speed squared'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '깊이와 난류' : 'Depth and Turbulence'}</strong>: ${currentLanguage === 'ko' ? '깊이에 따른 수직 난류 확산' : 'Vertical turbulence diffusion with depth'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-warning">
+                        <strong>⚠️ ${currentLanguage === 'ko' ? '주의사항:' : 'Warning:'}</strong> ${currentLanguage === 'ko' ? '극한 조건(태풍 등)에서는 실제 해양 현상과 차이가 있을 수 있습니다.' : 'Under extreme conditions (typhoons, etc.), there may be differences from actual ocean phenomena.'}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 문제 해결
+        function showTroubleshooting() {
+            const modalBody = document.getElementById('solutionModalBody');
+            modalBody.innerHTML = `
+                <div class="solution-section">
+                    <h3>🔧 ${t('solution_trouble_title')}</h3>
+                    <p>${t('solution_trouble_desc')}</p>
+                    
+                    <div class="solution-section">
+                        <h4>❓ ${currentLanguage === 'ko' ? '차트가 표시되지 않을 때' : 'When charts are not displayed'}</h4>
+                        <ul>
+                            <li>${currentLanguage === 'ko' ? '인터넷 연결 상태 확인' : 'Check internet connection'}</li>
+                            <li>${currentLanguage === 'ko' ? '브라우저 새로고침 (F5)' : 'Browser refresh (F5)'}</li>
+                            <li>${currentLanguage === 'ko' ? '다른 브라우저로 시도' : 'Try different browser'}</li>
+                            <li>${currentLanguage === 'ko' ? 'JavaScript 활성화 확인' : 'Check JavaScript enabled'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-section">
+                        <h4>❓ ${currentLanguage === 'ko' ? '계산 결과가 이상할 때' : 'When calculation results are abnormal'}</h4>
+                        <ul>
+                            <li>${currentLanguage === 'ko' ? '파라미터 값이 유효한 범위인지 확인' : 'Check if parameter values are in valid range'}</li>
+                            <li>${currentLanguage === 'ko' ? '위도 값이 -90도에서 90도 사이인지 확인' : 'Check if latitude is between -90° and 90°'}</li>
+                            <li>${currentLanguage === 'ko' ? '바람 속도가 0보다 큰지 확인' : 'Check if wind speed is greater than 0'}</li>
+                            <li>${currentLanguage === 'ko' ? '깊이 값이 10m 이상인지 확인' : 'Check if depth is 10m or more'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-section">
+                        <h4>❓ ${currentLanguage === 'ko' ? '내보내기가 작동하지 않을 때' : 'When export is not working'}</h4>
+                        <ul>
+                            <li>${currentLanguage === 'ko' ? '먼저 계산을 실행했는지 확인' : 'Check if calculation was executed first'}</li>
+                            <li>${currentLanguage === 'ko' ? '브라우저의 팝업 차단 설정 확인' : 'Check browser popup blocker settings'}</li>
+                            <li>${currentLanguage === 'ko' ? '다운로드 폴더 권한 확인' : 'Check download folder permissions'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-section">
+                        <h4>❓ ${currentLanguage === 'ko' ? '모바일에서 사용할 때' : 'When using on mobile'}</h4>
+                        <ul>
+                            <li>${currentLanguage === 'ko' ? '가로 모드로 전환하여 사용' : 'Switch to landscape mode'}</li>
+                            <li>${currentLanguage === 'ko' ? '핀치 줌 제스처로 차트 확대/축소' : 'Pinch zoom gesture for chart zoom'}</li>
+                            <li>${currentLanguage === 'ko' ? '터치 드래그로 차트 회전 (3D)' : 'Touch drag for chart rotation (3D)'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-tip">
+                        <strong>💡 ${currentLanguage === 'ko' ? '팁:' : 'Tip:'}</strong> ${currentLanguage === 'ko' ? '문제가 지속되면 브라우저 캐시를 삭제하고 다시 시도해보세요.' : 'If problems persist, clear browser cache and try again.'}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 모범 사례
+        function showBestPractices() {
+            const modalBody = document.getElementById('solutionModalBody');
+            modalBody.innerHTML = `
+                <div class="solution-section">
+                    <h3>⭐ ${t('solution_best_title')}</h3>
+                    <p>${t('solution_best_desc')}</p>
+                    
+                    <div class="solution-section">
+                        <h4>🎯 ${currentLanguage === 'ko' ? '파라미터 설정 모범 사례' : 'Parameter Setting Best Practices'}</h4>
+                        <ul>
+                            <li><strong>${t('wind_speed')}</strong>: ${currentLanguage === 'ko' ? '실제 관측 데이터 기반 설정' : 'Set based on actual observation data'}</li>
+                            <li><strong>${t('wind_direction')}</strong>: ${currentLanguage === 'ko' ? '계절별 주요 바람 패턴 고려' : 'Consider seasonal wind patterns'}</li>
+                            <li><strong>${t('latitude')}</strong>: ${currentLanguage === 'ko' ? '분석 대상 지역의 정확한 위도 사용' : 'Use accurate latitude of target region'}</li>
+                            <li><strong>${t('depth')}</strong>: ${currentLanguage === 'ko' ? '관심 있는 수층 깊이 설정' : 'Set depth of interest'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-section">
+                        <h4>📊 ${currentLanguage === 'ko' ? '시각화 활용 모범 사례' : 'Visualization Best Practices'}</h4>
+                        <ul>
+                            <li><strong>${t('vis_3d')}</strong>: ${currentLanguage === 'ko' ? '해류의 수직 구조 분석' : 'Vertical structure analysis of currents'}</li>
+                            <li><strong>${t('vis_2d')}</strong>: ${currentLanguage === 'ko' ? '평면에서의 해류 패턴 분석' : '2D current pattern analysis'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '결과 비교' : 'Result Comparison'}</strong>: ${currentLanguage === 'ko' ? '다양한 조건에서의 결과 비교' : 'Compare results under various conditions'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-section">
+                        <h4>🔬 ${currentLanguage === 'ko' ? '과학적 분석 모범 사례' : 'Scientific Analysis Best Practices'}</h4>
+                        <ul>
+                            <li><strong>${currentLanguage === 'ko' ? '시스템적 접근' : 'Systematic Approach'}</strong>: ${currentLanguage === 'ko' ? '체계적인 파라미터 변화 실험' : 'Systematic parameter variation experiments'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '문서화' : 'Documentation'}</strong>: ${currentLanguage === 'ko' ? '분석 조건과 결과를 상세히 기록' : 'Detailed recording of analysis conditions and results'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '검증' : 'Verification'}</strong>: ${currentLanguage === 'ko' ? '다른 도구나 이론과의 비교 검증' : 'Comparison verification with other tools or theories'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '해석' : 'Interpretation'}</strong>: ${currentLanguage === 'ko' ? '물리적 의미를 고려한 결과 해석' : 'Result interpretation considering physical meaning'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-tip">
+                        <strong>💡 ${currentLanguage === 'ko' ? '팁:' : 'Tip:'}</strong> ${currentLanguage === 'ko' ? '분석 결과는 항상 물리적 배경과 함께 해석하세요.' : 'Always interpret analysis results with physical background.'}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 사례 연구
+        function showCaseStudies() {
+            const modalBody = document.getElementById('solutionModalBody');
+            modalBody.innerHTML = `
+                <div class="solution-section">
+                    <h3>📊 ${t('solution_case_title')}</h3>
+                    <p>${t('solution_case_desc')}</p>
+                    
+                    <div class="solution-section">
+                        <h4>🌊 ${currentLanguage === 'ko' ? '쿠로시오 해류 분석' : 'Kuroshio Current Analysis'}</h4>
+                        <ul>
+                            <li><strong>${currentLanguage === 'ko' ? '지역' : 'Region'}</strong>: ${currentLanguage === 'ko' ? '북태평양 (위도: 30-35도)' : 'North Pacific (Latitude: 30-35°)'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '바람 조건' : 'Wind Conditions'}</strong>: ${currentLanguage === 'ko' ? '서풍 15-20 m/s' : 'Westerlies 15-20 m/s'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '분석 포인트' : 'Analysis Point'}</strong>: ${currentLanguage === 'ko' ? '강한 해류와 바람의 상호작용' : 'Interaction between strong currents and wind'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '결과 해석' : 'Result Interpretation'}</strong>: ${currentLanguage === 'ko' ? '에크만 수송이 쿠로시오 해류에 미치는 영향' : 'Effect of Ekman transport on Kuroshio Current'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-section">
+                        <h4>🌪️ ${currentLanguage === 'ko' ? '태풍 조건 시뮬레이션' : 'Typhoon Condition Simulation'}</h4>
+                        <ul>
+                            <li><strong>${currentLanguage === 'ko' ? '바람 조건' : 'Wind Conditions'}</strong>: ${currentLanguage === 'ko' ? '25-30 m/s 강풍' : '25-30 m/s strong wind'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '분석 포인트' : 'Analysis Point'}</strong>: ${currentLanguage === 'ko' ? '극한 조건에서의 해류 변화' : 'Current changes under extreme conditions'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '응용 분야' : 'Application Fields'}</strong>: ${currentLanguage === 'ko' ? '태풍 경로 예측, 해양 안전' : 'Typhoon path prediction, marine safety'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-section">
+                        <h4>🧊 ${currentLanguage === 'ko' ? '극지 해류 분석' : 'Polar Current Analysis'}</h4>
+                        <ul>
+                            <li><strong>${currentLanguage === 'ko' ? '지역' : 'Region'}</strong>: ${currentLanguage === 'ko' ? '남극해 (위도: -60도)' : 'Southern Ocean (Latitude: -60°)'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '특징' : 'Characteristics'}</strong>: ${currentLanguage === 'ko' ? '강한 코리올리 효과' : 'Strong Coriolis effect'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '분석 포인트' : 'Analysis Point'}</strong>: ${currentLanguage === 'ko' ? '극지 순환과 에크만 수송' : 'Polar circulation and Ekman transport'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-section">
+                        <h4>🔆 ${currentLanguage === 'ko' ? '적도 해류 분석' : 'Equatorial Current Analysis'}</h4>
+                        <ul>
+                            <li><strong>${currentLanguage === 'ko' ? '지역' : 'Region'}</strong>: ${currentLanguage === 'ko' ? '적도 근처 (위도: 0-5도)' : 'Near equator (Latitude: 0-5°)'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '특징' : 'Characteristics'}</strong>: ${currentLanguage === 'ko' ? '코리올리 효과 최소화' : 'Minimized Coriolis effect'}</li>
+                            <li><strong>${currentLanguage === 'ko' ? '분석 포인트' : 'Analysis Point'}</strong>: ${currentLanguage === 'ko' ? '적도 해류의 특수성' : 'Special characteristics of equatorial currents'}</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-tip">
+                        <strong>💡 ${currentLanguage === 'ko' ? '팁:' : 'Tip:'}</strong> ${currentLanguage === 'ko' ? '각 사례 연구의 결과를 실제 관측 데이터와 비교해보세요.' : 'Compare the results of each case study with actual observation data.'}
+                    </div>
+                </div>
+            `;
+        }
     </script>
 </body>
 </html> 
