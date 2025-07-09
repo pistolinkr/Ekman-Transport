@@ -2283,7 +2283,7 @@
             'busan': {lat: 35.1, wind: 3.5, wind_dir: 135},
             'north_pacific': {lat: 45.0, wind: 6.0, wind_dir: 135},
             'north_atlantic': {lat: 50.0, wind: 8.0, wind_dir: 270},
-            'southern_ocean': {lat: -60.0, wind: 11.0, wind_dir: 270},
+            'southern_ocean': {lat: 60.0, wind: 11.0, wind_dir: 270}, // 절댓값으로 변경
             'equator': {lat: 2.0, wind: 2.0, wind_dir: 90}
         };
         
@@ -2329,7 +2329,7 @@
             const selected = document.getElementById('location').value;
             if (selected !== 'custom' && LOCATIONS[selected]) {
                 const loc = LOCATIONS[selected];
-                document.getElementById('latitude').value = loc.lat;
+                document.getElementById('latitude').value = Math.abs(loc.lat); // 절댓값으로 저장
                 document.getElementById('wind_speed').value = loc.wind;
                 document.getElementById('wind_direction').value = loc.wind_dir;
                 updateSliderValues();
@@ -2345,7 +2345,9 @@
         function calculateEkmanTransport(windSpeed, windDirection, latitude, depth) {
             if (latitude === 0) latitude = 1e-6; // 0으로 나누기 방지
             
-            const f = calculateCoriolisParameter(latitude);
+            // 위도 값을 음수로 변환하여 계산
+            const negativeLatitude = -latitude;
+            const f = calculateCoriolisParameter(negativeLatitude);
             const windStress = RHO_AIR * CD * windSpeed * windSpeed;
             const windDirRad = windDirection * Math.PI / 180;
             
@@ -2383,7 +2385,7 @@
             const energyTransfer = tauX * uVel[0] + tauY * vVel[0];
             
             return {
-                windSpeed, windDirection, latitude, depth,
+                windSpeed, windDirection, latitude: negativeLatitude, depth, // 위도 값을 음수로 반환
                 windStress, tauX, tauY, Mx, My, ekmanDepth,
                 zLevels, uVel, vVel, f, energyTransfer
             };
@@ -3054,7 +3056,7 @@
                                                   currentLanguage === 'ja' ? '緯度' :
                                                   currentLanguage === 'es' ? 'Latitud' :
                                                   currentLanguage === 'ru' ? 'Широта' :
-                                                  'Latitude'}: ${results.latitude.toFixed(1)}°`,
+                                                  'Latitude'}: ${(-results.latitude).toFixed(1)}°`,
                     font: {color: colors.text, size: 18},
                     x: 0.5,
                     y: 0.95
@@ -3132,7 +3134,9 @@
                     updateSliderValues();
                 }
                 
-                const results = calculateEkmanTransport(windSpeed, windDirection, latitude, depth);
+                // 위도 값을 음수로 변환하여 계산
+                const negativeLatitude = -latitude;
+                const results = calculateEkmanTransport(windSpeed, windDirection, negativeLatitude, depth);
                 currentResults = results;
                 
                 const visType = document.querySelector('input[name="vis_type"]:checked').value;
@@ -3291,7 +3295,7 @@
                  'Input Parameters']: {
                     [t('wind_speed')]: currentResults.windSpeed,
                     [t('wind_direction')]: currentResults.windDirection,
-                    [t('latitude')]: currentResults.latitude,
+                    [t('latitude')]: -currentResults.latitude,
                     [t('depth')]: currentResults.depth
                 },
                 [currentLanguage === 'ko' ? '계산 결과' :
