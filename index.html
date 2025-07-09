@@ -2299,7 +2299,7 @@
             document.getElementById('wind_direction_value').textContent = parseFloat(document.getElementById('wind_direction').value).toFixed(0);
             // 위도 값을 음수로 표시
             const latitudeValue = parseFloat(document.getElementById('latitude').value);
-            document.getElementById('latitude_value').textContent = (-latitudeValue).toFixed(0);
+            document.getElementById('latitude_value').textContent = (latitudeValue > 0 ? '+' : '') + latitudeValue.toFixed(0);
             document.getElementById('depth_value').textContent = parseFloat(document.getElementById('depth').value).toFixed(0);
         }
         
@@ -3006,6 +3006,16 @@
                 textposition: 'top right',
                 showlegend: true
             });
+            // Windstress 화살표(cone)
+            traces.push({
+                type: 'cone',
+                x: [windX], y: [windY], z: [0],
+                u: [windX], v: [windY], w: [0],
+                sizemode: 'absolute', sizeref: 0.3 * windLen, anchor: 'tip',
+                showscale: false, colorscale: [[0, '#FF7F32'], [1, '#FF7F32']],
+                name: LABELS.windstress[lang],
+                showlegend: false
+            });
             // 3. Ekman Transport (굵은 연두색 화살표, 표면)
             const transportScale = windLen * 0.7;
             const transportMag = Math.sqrt(results.Mx**2 + results.My**2);
@@ -3022,6 +3032,16 @@
                 textposition: 'middle right',
                 showlegend: true
             });
+            // Ekman Transport 화살표(cone)
+            traces.push({
+                type: 'cone',
+                x: [ekmanX], y: [ekmanY], z: [0],
+                u: [ekmanX], v: [ekmanY], w: [0],
+                sizemode: 'absolute', sizeref: 0.3 * transportScale, anchor: 'tip',
+                showscale: false, colorscale: [[0, '#A3D977'], [1, '#A3D977']],
+                name: LABELS.ekman[lang],
+                showlegend: false
+            });
             // 4. Geostrophic Transport (굵은 파란색 화살표, 바닥, 예시로 대각선)
             const geoLen = windLen * 0.8;
             const geoAngle = windDirRad + Math.PI / 3; // 예시로 바람방향에서 60도
@@ -3037,6 +3057,16 @@
                 text: ['', LABELS.geos[lang]],
                 textposition: 'bottom left',
                 showlegend: true
+            });
+            // Geostrophic Transport 화살표(cone)
+            traces.push({
+                type: 'cone',
+                x: [geoX], y: [geoY], z: [-depth],
+                u: [geoX], v: [geoY], w: [0],
+                sizemode: 'absolute', sizeref: 0.3 * geoLen, anchor: 'tip',
+                showscale: false, colorscale: [[0, '#3355AA'], [1, '#3355AA']],
+                name: LABELS.geos[lang],
+                showlegend: false
             });
             // 5. 기존 나선 전체 연결선(얇게, 배경)
             traces.push({
@@ -3295,7 +3325,7 @@
                  'Input Parameters']: {
                     [t('wind_speed')]: currentResults.windSpeed,
                     [t('wind_direction')]: currentResults.windDirection,
-                    [t('latitude')]: -currentResults.latitude,
+                    [t('latitude')]: (currentResults.latitude > 0 ? '+' : '') + currentResults.latitude,
                     [t('depth')]: currentResults.depth
                 },
                 [currentLanguage === 'ko' ? '계산 결과' :
