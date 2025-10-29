@@ -2327,15 +2327,11 @@
                 menuToggle.addEventListener('click', toggleMobileMenu);
             }
             
-            // 모바일 메뉴 닫기 (오버레이 및 닫기 버튼)
+            // 모바일 메뉴 닫기 (오버레이)
             const menuOverlay = document.querySelector('.mobile-menu-overlay');
-            const menuClose = document.querySelector('.mobile-menu-close');
             if (menuOverlay) {
                 menuOverlay.addEventListener('click', closeMobileMenu);
                 menuOverlay.addEventListener('touchend', closeMobileMenu);
-            }
-            if (menuClose) {
-                menuClose.addEventListener('click', closeMobileMenu);
             }
             
             // 사전 설정 버튼들 (data-preset 속성 사용)

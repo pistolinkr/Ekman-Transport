@@ -53,6 +53,8 @@
             min-height: calc(100vh - 16px);
             transition: background-color 0.3s ease, border-color 0.3s ease;
             flex-direction: column;
+            width: 100%;
+            max-width: 100%;
         }
         
         /* 왼쪽 제어 패널 */
@@ -139,7 +141,7 @@
         }
         
         .tk-scale::-webkit-slider-runnable-track {
-            height: 20px;
+            height: 100%;
             background: var(--slider-bg);
             border: 1px inset var(--border-color);
             border-radius: 0;
@@ -149,12 +151,13 @@
             -webkit-appearance: none;
             appearance: none;
             width: 16px;
-            height: 16px;
+            height: 20px;
             background: var(--button-bg);
             border: 1px outset var(--border-color);
             cursor: pointer;
             transition: background 0.3s ease, border-color 0.3s ease;
             border-radius: 0;
+            margin-top: 0;
         }
         
         .tk-scale::-moz-range-track {
@@ -166,7 +169,7 @@
         
         .tk-scale::-moz-range-thumb {
             width: 16px;
-            height: 16px;
+            height: 20px;
             background: var(--button-bg);
             border: 1px outset var(--border-color);
             cursor: pointer;
@@ -191,7 +194,7 @@
         
         .tk-scale::-ms-thumb {
             width: 16px;
-            height: 16px;
+            height: 20px;
             background: var(--button-bg);
             border: 1px outset var(--border-color);
             cursor: pointer;
@@ -318,6 +321,7 @@
             border-radius: 0;
             -webkit-appearance: none;
             appearance: none;
+            margin-top: 0;
         }
         
         input[type="range"]::-moz-range-track {
@@ -370,9 +374,9 @@
             left: 15px;
             transform: translateY(-50%);
             z-index: 1000;
-            width: 25px;
-            height: 50px;
-            border-radius: 12.5px;
+            width: 22px;
+            height: 43px;
+            border-radius: 11px;
             background: var(--button-bg);
             border: 0.5px outset var(--border-color);
             cursor: pointer;
@@ -381,7 +385,7 @@
             align-items: center;
             justify-content: center;
             touch-action: manipulation;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 12px rgba(0,0,0,0.01);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -398,10 +402,46 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         
+        /* 패널이 열릴 때 버튼이 패널 옆으로 이동 */
+        body.menu-open .mobile-menu-toggle {
+            left: calc(85% + 8px);
+        }
+        
+        body.menu-open .mobile-menu-toggle:hover {
+            transform: translateY(-50%) scale(1.01);
+        }
+        
+        body.menu-open .mobile-menu-toggle:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        
+        /* 375px 근처 화면 크기 최적화 */
+        @media screen and (min-width: 360px) and (max-width: 410px) {
+            body.menu-open .mobile-menu-toggle {
+                left: calc(85% + 8px);
+            }
+        }
+        
+        @media screen and (min-width: 351px) {
+            body.menu-open .mobile-menu-toggle {
+                left: calc(320px + 8px);
+            }
+        }
+        
+        @media screen and (max-width: 350px) {
+            .mobile-menu-panel {
+                width: 300px !important;
+                max-width: 300px !important;
+            }
+            body.menu-open .mobile-menu-toggle {
+                left: calc(300px + 8px);
+            }
+        }
+        
         /* 세로 점 3개 아이콘 (⋮) */
         .hamburger {
-            width: 24px;
-            height: 24px;
+            width: 14px;
+            height: 14px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -421,10 +461,10 @@
         
         /* 활성 상태 - 점들이 중앙으로 이동하며 X로 변환 */
         .mobile-menu-toggle.active .hamburger span:nth-child(1) {
-            transform: translateY(10px) rotate(45deg);
-            width: 20px;
-            height: 3px;
-            border-radius: 2px;
+            transform: translateY(7px) rotate(45deg);
+            width: 17px;
+            height: 2px;
+            border-radius: 1px;
         }
         
         .mobile-menu-toggle.active .hamburger span:nth-child(2) {
@@ -433,10 +473,10 @@
         }
         
         .mobile-menu-toggle.active .hamburger span:nth-child(3) {
-            transform: translateY(-10px) rotate(-45deg);
-            width: 20px;
-            height: 3px;
-            border-radius: 2px;
+            transform: translateY(-7px) rotate(-45deg);
+            width: 17px;
+            height: 2px;
+            border-radius: 1px;
         }
         
         /* 향상된 오버레이 */
@@ -467,16 +507,23 @@
                 top: 0;
                 left: -100%;
                 width: 85%;
-                max-width: 350px;
+                max-width: 320px;
                 height: 100vh;
                 background: var(--bg-primary);
                 z-index: 1001;
-                padding: 80px 20px 20px 20px;
+                padding: 80px 0 20px 0;
                 overflow-x: auto;
                 transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                border-right: 3px solid var(--border-color);
                 box-shadow: 5px 0 25px rgba(0,0,0,0.3);
                 overflow-y: auto;
+            }
+            
+            /* 375px 근처 최적화 */
+            @media screen and (min-width: 360px) and (max-width: 410px) {
+                .mobile-menu-panel {
+                    width: 320px;
+                    max-width: 320px;
+                }
             }
         }
         
@@ -491,7 +538,7 @@
                 left: 0;
                 right: 0;
                 height: 70px;
-                background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+                background: rgba(0, 0, 0, 0.01);
                 border-bottom: 2px solid var(--border-color);
                 display: flex;
                 align-items: center;
@@ -672,7 +719,7 @@
             
             
             #plot-area {
-                min-height: calc(100vh - 100px);
+                min-height: calc((100vh - 100px) * 0.8);
             }
         }
         
@@ -696,6 +743,8 @@
             .main-window {
                 flex-direction: column;
                 min-height: calc(100vh - 40px);
+                width: 100%;
+                max-width: 100%;
             }
             
             .mobile-menu-toggle {
@@ -724,7 +773,6 @@
                 display: flex;
                 flex-direction: column;
                 transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                border-right: 3px solid var(--border-color);
                 box-shadow: 5px 0 25px rgba(0,0,0,0.3);
             }
             
@@ -749,7 +797,7 @@
                 top: 0;
                 flex-shrink: 0;
                 padding: 10px 20px;
-                background: var(--bg-primary);
+                background: rgba(0, 0, 0, 0.01);
                 z-index: 100;
                 border-bottom: 1px solid var(--border-color);
                 margin: 0;
@@ -762,12 +810,6 @@
             .mobile-menu-panel > .mobile-menu-header {
                 margin-top: 0 !important;
                 padding-top: 10px;
-            }
-            
-            /* 헤더 다음 모든 콘텐츠에 패딩 */
-            .mobile-menu-panel > *:not(.mobile-menu-header) {
-                padding-left: 20px;
-                padding-right: 20px;
             }
             
             /* swipe-indicator는 상단 패딩 없음 */
@@ -794,11 +836,27 @@
                 padding-right: 0;
             }
             
+            /* 패널 내부 labelframe 등의 오른쪽 보더가 패널 끝에 딱 맞도록 */
+            .mobile-menu-panel .labelframe {
+                margin-right: 0;
+                border-right: none;
+            }
+            
+            .mobile-menu-panel .button-group {
+                margin-right: 0;
+            }
+            
             .plot-frame {
-                width: 100%;
                 margin: 5px;
                 padding: 5px;
-                min-height: calc(100vh - 60px);
+                width: 100%;
+                min-height: calc((100vh - 60px) * 0.8);
+                max-height: calc((100vh - 60px) * 0.8);
+            }
+            
+            .plot-frame #plot-area {
+                width: 100% !important;
+                height: 100% !important;
             }
             
             /* 모바일 최적화 컨트롤 */
@@ -887,7 +945,7 @@
             
             /* 모바일 그래프 최적화 */
             #plot-area {
-                min-height: calc(100vh - 80px);
+                min-height: calc((100vh - 80px) * 0.8);
                 width: 100%;
             }
         }
@@ -1172,6 +1230,7 @@
             .footer {
                 padding: 15px 0;
                 font-size: 10pt;
+                margin-top: -118px;
             }
             
             .footer-content {
