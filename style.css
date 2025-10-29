@@ -133,15 +133,69 @@
             background: var(--slider-bg);
             border: 1px inset var(--border-color);
             transition: background-color 0.3s ease, border-color 0.3s ease;
+            border-radius: 0;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        .tk-scale::-webkit-slider-runnable-track {
+            height: 20px;
+            background: var(--slider-bg);
+            border: 1px inset var(--border-color);
+            border-radius: 0;
         }
         
         .tk-scale::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
             width: 16px;
             height: 16px;
             background: var(--button-bg);
             border: 1px outset var(--border-color);
             cursor: pointer;
             transition: background 0.3s ease, border-color 0.3s ease;
+            border-radius: 0;
+        }
+        
+        .tk-scale::-moz-range-track {
+            height: 20px;
+            background: var(--slider-bg);
+            border: 1px inset var(--border-color);
+            border-radius: 0;
+        }
+        
+        .tk-scale::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: var(--button-bg);
+            border: 1px outset var(--border-color);
+            cursor: pointer;
+            transition: background 0.3s ease, border-color 0.3s ease;
+            border-radius: 0;
+        }
+        
+        .tk-scale::-ms-track {
+            height: 20px;
+            background: transparent;
+            border-color: transparent;
+            border-width: 16px 0;
+            color: transparent;
+        }
+        
+        .tk-scale::-ms-fill-lower,
+        .tk-scale::-ms-fill-upper {
+            background: var(--slider-bg);
+            border: 1px inset var(--border-color);
+            border-radius: 0;
+        }
+        
+        .tk-scale::-ms-thumb {
+            width: 16px;
+            height: 16px;
+            background: var(--button-bg);
+            border: 1px outset var(--border-color);
+            cursor: pointer;
+            border-radius: 0;
         }
         
         /* 콤보박스 스타일 */
@@ -247,6 +301,40 @@
             ::-webkit-scrollbar-thumb:hover {
                 background: #555;
             }
+        }
+        
+        /* 모든 input[type="range"]에 날카로운 스타일 적용 */
+        input[type="range"] {
+            border-radius: 0;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-runnable-track {
+            border-radius: 0;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            border-radius: 0;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        input[type="range"]::-moz-range-track {
+            border-radius: 0;
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            border-radius: 0;
+        }
+        
+        input[type="range"]::-ms-fill-lower,
+        input[type="range"]::-ms-fill-upper {
+            border-radius: 0;
+        }
+        
+        input[type="range"]::-ms-thumb {
+            border-radius: 0;
         }
         
         /* 다크 모드에서 입력 필드 스타일 개선 */
