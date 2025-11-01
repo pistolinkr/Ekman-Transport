@@ -1,6 +1,6 @@
 # Ekman Transport Visualizer
 
-A professional web-based tool for visualizing oceanographic phenomena, analyzing wind-ocean current interactions based on Ekman transport theory.
+An educational web-based simulation tool for visualizing oceanographic phenomena and exploring wind-ocean current interactions based on Ekman transport theory.
 
 ![Ekman Transport Visualizer](logo/white.png)
 

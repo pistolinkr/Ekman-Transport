@@ -1091,7 +1091,7 @@
         
         /* 푸터 스타일 */
         .footer {
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+            background: var(--bg-primary);
             border-top: 2px solid var(--border-color);
             padding: 20px 0;
             margin-top: auto;
